@@ -1,0 +1,34 @@
+{
+  "name": "fastlongmodel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtkclouds/fast-js-language-model.git"
+  },
+  "keywords": [
+    "fast",
+    "language",
+    "model",
+    "js"
+  ],
+  "author": "caio temer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtkclouds/fast-js-language-model/issues"
+  },
+  "homepage": "https://github.com/rtkclouds/fast-js-language-model#readme",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.9.0",
+    "@tensorflow/tfjs-node-gpu": "^4.9.0",
+    "fasttext": "^1.0.0",
+    "fs-path": "^0.0.25",
+    "gpt-3-encoder": "^1.1.4",
+    "lodash": "^4.17.21",
+    "talisman": "^1.1.4"
+  }
+}
