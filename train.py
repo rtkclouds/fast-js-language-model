@@ -10,7 +10,7 @@ import time
 import numpy as np
 import json
 
-use_gpu = False
+use_gpu = True
 if not use_gpu:
     # seems to be better for M1 Macbook with the current architecture
     tf.config.experimental.set_visible_devices([], 'GPU')
