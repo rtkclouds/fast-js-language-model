@@ -1,6 +1,5 @@
 import tensorflow as tf
 import tiktoken
-from scipy.spatial import distance
 import os
 import random
 import numpy as np
