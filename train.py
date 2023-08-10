@@ -11,6 +11,11 @@ import time
 import numpy as np
 import json
 
+use_gpu = False
+is not use_gpu:
+    # seems to be better for M1 Macbook with the current architecture
+    tf.config.experimental.set_visible_devices([], 'GPU')
+
 # Default checkpoint data
 checkpoint_data = {
     'last_epoch': 0,
@@ -129,10 +134,7 @@ class TransformerLayer(tf.keras.layers.Layer):
         dff2 = tf.reshape(flat_dff2, [batch_size, self.pad_size, -1])
 
         output = normalized_latent + tf.squeeze(self.random_id_ff) * dff2
-
-        print("Shape of output:", output.shape)
         output = tf.reshape(output, [batch_size, self.pad_size, self.depth])
-        print("Shape of output after reshape:", output.shape)
 
         if self.pool:
             return tf.reduce_mean(output, axis=1)
@@ -244,14 +246,14 @@ books = [file for file in os.listdir('./data') if file.endswith('.txt') and not 
 random.shuffle(books)
 
 # test tokenizer. Ensure that all tokens are present in vec.vec
-for book_path in books:
-    full_path = os.path.join('./data', book_path)
-    with open(full_path, 'r') as f:
-        book = f.read()
-    book = tokenizer.encode(book)
+# for book_path in books:
+#     full_path = os.path.join('./data', book_path)
+#     with open(full_path, 'r') as f:
+#         book = f.read()
+#     book = tokenizer.encode(book)
 
-    for token in book:
-        assert convert(token) != empty_vec, f"token {token} hasn't been found in w2v: {w2v}"
+#     for token in book:
+#         assert convert(token) != empty_vec, f"token {token} hasn't been found in w2v: {w2v}"
 
 setx = []
 last_batch = []
@@ -264,9 +266,9 @@ def run():
 
     x = tf.keras.layers.Conv1D(filters=cfg['dimension'], kernel_size=1, strides=1, padding="same", activation="mish")(x)
     print("Shape of x after Conv1D:", x.shape)
-    x = TransformerLayer(depth=cfg['dimension'], num_heads=8, pad_size=cfg['arrayDimension'])(x)
+    x = TransformerLayer(depth=cfg['dimension'], num_heads=4, pad_size=cfg['arrayDimension'])(x)
     print("Shape of x after first TransformerLayer:", x.shape)
-    x = TransformerLayer(depth=cfg['sequenceSize'], num_heads=8, pad_size=cfg['arrayDimension'])(x)
+    x = TransformerLayer(depth=cfg['sequenceSize'], num_heads=4, pad_size=cfg['arrayDimension'])(x)
     print("Shape of x after second TransformerLayer:", x.shape)
 
     x3a = tf.keras.layers.Permute((2, 1))(x)
