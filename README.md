@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to our project, an initiative aimed at transcending the boundaries set by today's most well-known systems. While these existing systems have made significant contributions, they are often inflated in terms of complexity and resource consumption. This project is dedicated to achieving similar or even superior results using only a fraction of the resources, with an emphasis on simplicity and functionality.
+Welcome to ast-js-language-model, an initiative aimed at transcending the boundaries set by today's most well-known systems. While these existing systems have made significant contributions, they are often inflated in terms of complexity and resource consumption. This project is dedicated to achieving similar or even superior results using only a fraction of the resources, with an emphasis on simplicity and functionality.
 
 ## Goals
 
